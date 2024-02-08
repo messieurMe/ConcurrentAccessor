@@ -1,6 +1,6 @@
 package concurrentAccessor.generators.model
 
-class GeneratedSource(
+internal class GeneratedSource(
     val code: String,
     val imports: Set<String>,
 )

@@ -17,11 +17,7 @@ buildscript {
 }
 
 dependencies {
-
-//    implementation(project(":symbolProcessor"))
-//    ksp(project(":symbolProcessor"))
-
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+   testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
 tasks.test {

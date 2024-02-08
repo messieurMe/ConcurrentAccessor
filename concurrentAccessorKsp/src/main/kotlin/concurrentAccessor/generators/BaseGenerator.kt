@@ -2,10 +2,9 @@ package concurrentAccessor.generators
 
 import com.google.devtools.ksp.symbol.KSDeclaration
 import concurrentAccessor.generators.model.GeneratedSource
-import java.util.LinkedList
-import java.util.TreeSet
+import java.util.*
 
-abstract class BaseGenerator {
+internal abstract class BaseGenerator {
 
     val imports: MutableSet<String> = TreeSet()
 

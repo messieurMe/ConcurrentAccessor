@@ -3,7 +3,7 @@ package concurrentAccessor.generators.generatedType
 import concurrentAccessor.generators.BaseGenerator
 import concurrentAccessor.generators.model.GeneratedSource
 
-class GFile private constructor(private val filePackage: String) : BaseGenerator() {
+internal class GFile private constructor(private val filePackage: String) : BaseGenerator() {
 
     companion object {
 

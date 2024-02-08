@@ -1,6 +1,5 @@
 plugins {
     kotlin("jvm")
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
 }
 
 group = "com.github.messieurMe"
@@ -12,10 +11,8 @@ repositories {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC2")
-
     implementation(project(":concurrentAccessorApi"))
-    ksp(project(":concurrentAccessorKsp"))
+    implementation("com.google.devtools.ksp:symbol-processing-api:1.9.22-1.0.17")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }

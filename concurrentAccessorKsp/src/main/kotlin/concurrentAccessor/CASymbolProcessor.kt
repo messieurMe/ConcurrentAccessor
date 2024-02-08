@@ -1,5 +1,6 @@
 package concurrentAccessor
 
+import ConcurrentAccessor
 import com.google.devtools.ksp.getDeclaredFunctions
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.Resolver
@@ -11,7 +12,7 @@ import concurrentAccessor.generators.generatedType.GClass.Companion.gClass
 import concurrentAccessor.generators.generatedType.GFile.Companion.gFile
 import concurrentAccessor.generators.generatedType.GMethod.Companion.gMethod
 
-class CASymbolProcessor(
+internal class CASymbolProcessor(
     private val environment: SymbolProcessorEnvironment
 ) : SymbolProcessor {
 
@@ -34,7 +35,7 @@ class CASymbolProcessor(
             }
 
             environment.codeGenerator.createNewFile(
-                dependencies = Dependencies(aggregating = false,), // because we depend only on annotated files
+                dependencies = Dependencies(aggregating = false, annotated.containingFile!!), // TODO("Check if it's safe to use !!")
                 packageName = packageName,
                 fileName = "${annotatedClass.simpleName.getShortName()}ConcurrentAccessed"
             ).bufferedWriter(Charsets.UTF_8)

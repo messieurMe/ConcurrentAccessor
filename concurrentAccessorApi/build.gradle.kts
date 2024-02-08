@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm")
+    kotlin("jvm") version "1.9.22"
 }
 
 group = "com.github.messieurMe"
@@ -10,9 +10,6 @@ repositories {
 }
 
 dependencies {
-
-    implementation("com.google.devtools.ksp:symbol-processing-api:1.9.22-1.0.17")
-
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 

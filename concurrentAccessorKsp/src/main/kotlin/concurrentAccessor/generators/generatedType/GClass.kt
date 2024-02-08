@@ -1,13 +1,11 @@
 package concurrentAccessor.generators.generatedType
 
-import com.google.devtools.ksp.isOpen
 import com.google.devtools.ksp.symbol.KSClassDeclaration
-import com.google.devtools.ksp.symbol.KSDeclaration
 import concurrentAccessor.generators.BaseGenerator
 import concurrentAccessor.generators.model.GeneratedSource
-import java.util.LinkedList
+import java.util.*
 
-class GClass private constructor(
+internal class GClass private constructor(
     private val classDeclaration: KSClassDeclaration
 ): BaseGenerator() {
 
@@ -27,7 +25,6 @@ class GClass private constructor(
 
 
     val gMethods: MutableList<BaseGenerator> = LinkedList()
-    val fields: MutableList<BaseGenerator> = LinkedList()
 
     override fun generateCode(): GeneratedSource {
         with(classDeclaration) {

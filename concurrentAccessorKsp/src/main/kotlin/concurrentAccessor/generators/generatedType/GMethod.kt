@@ -5,7 +5,7 @@ import com.google.devtools.ksp.symbol.Modifier
 import concurrentAccessor.generators.BaseGenerator
 import concurrentAccessor.generators.model.GeneratedSource
 
-class GMethod private constructor(
+internal class GMethod private constructor(
     private val methodDeclaration: KSFunctionDeclaration
 ) : BaseGenerator() {
 

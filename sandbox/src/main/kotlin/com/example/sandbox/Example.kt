@@ -1,34 +1,42 @@
 package com.example.sandbox
 
-import concurrentAccessor.ConcurrentAccessor
-
+import ConcurrentAccessorClassProvider
+import java.util.*
+import kotlin.concurrent.thread
 
 fun main(){
-    println("Hi")
+    val threads = 3
+    val repeats = 2
+
+    val concurrentlyAccessedClass = ConcurrentAccessorClassProvider
+        .provide<ExampleWithAnnotation>(ExampleWithAnnotationImpl())
+
+    val normalClass = ExampleWithAnnotationImpl()
+
+    println("With concurrent access")
+    sampleTest(concurrentlyAccessedClass, threads, repeats)
+
+    println("With normal access")
+    sampleTest(normalClass, threads, repeats)
+
 }
 
-
-@ConcurrentAccessor
-interface ExampleWithAnnotation{
-    fun lol()
-
-    fun lolReturned() : Int
-
-    fun lolParameters(x: Int)
-}
-
-class ExampleWithAnnotationImpl{
-
-    fun lol() {
-        val int = 0
-        println(int)
+fun sampleTest(
+    concurrentlyAccessedClass: ExampleWithAnnotation,
+    threads: Int,
+    repeats: Int
+){
+    val launchedThreads = LinkedList<Thread>()
+    repeat(threads){
+        thread {
+            repeat(repeats) {
+                with(concurrentlyAccessedClass) {
+                    sampleFunction()
+                    functionWithParameter(-1)
+                    functionWithReturn()
+                }
+            }
+        }.also(launchedThreads::add)
     }
-
-    fun lolReturned() : Int {
-        return -1
-    }
-
-    fun lolParameters(x: Int) {
-        println(x)
-    }
+    launchedThreads.forEach(Thread::join)
 }
